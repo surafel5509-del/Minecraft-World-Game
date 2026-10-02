@@ -1,5 +1,5 @@
 package com.craftworld.game.engine;
-import com.craftworld.game.player.Player; import com.craftworld.game.world.World;
+import com.craftworld.game.player.Player; import com.craftworld.game.world.World; import com.craftworld.game.world.Block;
 /** Shared simulation state. Volatile controls are written by UI and consumed on GL thread. */
 public final class GameState {
  public final World world=new World(20261002L); public final Player player=new Player();
