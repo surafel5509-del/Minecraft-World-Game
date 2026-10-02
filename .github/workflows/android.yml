@@ -22,7 +22,7 @@ jobs:
           tail -120 gradle-test.log >> "$GITHUB_STEP_SUMMARY"
           printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
           if [ -n "${STATUS:-}" ]; then
-            MESSAGE=$(tail -c 5000 gradle-test.log | sed ':a;N;$!ba;s/%/%25/g;s/\r/%0D/g;s/\n/%0A/g')
+            MESSAGE=$(grep -E -A3 -B2 'error:|FAILURE:|What went wrong|Execution failed|Caused by:' gradle-test.log | tail -80 | sed ':a;N;$!ba;s/%/%25/g;s/\r/%0D/g;s/\n/%0A/g')
             echo "::error title=Gradle diagnostics::$MESSAGE"
           fi
           exit ${STATUS:-0}
