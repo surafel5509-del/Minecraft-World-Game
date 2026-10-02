@@ -1,5 +1,7 @@
 # CraftWorld 3D
 
+[![Android CI](https://github.com/surafel5509-del/Minecraft-World-Game/actions/workflows/android.yml/badge.svg)](https://github.com/surafel5509-del/Minecraft-World-Game/actions/workflows/android.yml)
+
 An original, **100% offline** 3D voxel sandbox game for Android. Explore
 procedurally generated worlds, mine resources, craft tools, build houses,
 drive cars, fly planes and discover a second dimension — with **no internet,
@@ -77,6 +79,10 @@ configuration, or:
 ./gradlew :core:test          # run the 101 engine unit tests
 ./gradlew :app:assembleDebug  # build the APK
 ```
+
+Every push also runs **GitHub Actions** (`.github/workflows/android.yml`),
+which executes the full test suite and uploads the debug APK as the
+`CraftWorld3D-debug-apk` artifact on the run page.
 
 The engine tests also run without Gradle/network via the bundled runner:
 
