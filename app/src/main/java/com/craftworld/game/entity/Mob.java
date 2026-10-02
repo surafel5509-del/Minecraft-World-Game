@@ -1,0 +1,3 @@
+package com.craftworld.game.entity;
+/** Lightweight AI entity; hostile types chase the player, passive types wander. */
+public final class Mob {public enum Type{PIG,COW,SHEEP,CHICKEN,ZOMBIE,SKELETON,CREEPER,SPIDER,VILLAGER}public final Type type;public float x,y,z;public int health=20;public Mob(Type t){type=t;}public void tick(float px,float pz,float dt){boolean hostile=type.ordinal()>=4&&type.ordinal()<=7;float dx=hostile?px-x:(float)Math.sin(System.nanoTime()/2e9+x),dz=hostile?pz-z:(float)Math.cos(System.nanoTime()/2e9+z),d=(float)Math.max(1,Math.hypot(dx,dz));x+=dx/d*dt*(hostile?2.1f:.7f);z+=dz/d*dt*(hostile?2.1f:.7f);}}

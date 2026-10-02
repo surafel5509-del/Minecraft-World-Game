@@ -1,0 +1,49 @@
+name: Build Android APK
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions: { contents: read }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.9' }
+      - name: Unit tests
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle testDebugUnitTest --stacktrace --console=plain 2>&1 | tee gradle-test.log || STATUS=$?
+          printf '```text\n' >> "$GITHUB_STEP_SUMMARY"
+          tail -120 gradle-test.log >> "$GITHUB_STEP_SUMMARY"
+          printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "${STATUS:-}" ]; then
+            MESSAGE=$(grep -E -A3 -B2 'error:|FAILURE:|What went wrong|Execution failed|Caused by:' gradle-test.log | tail -80 | sed ':a;N;$!ba;s/%/%25/g;s/\r/%0D/g;s/\n/%0A/g')
+            echo "::error title=Gradle diagnostics::$MESSAGE"
+          fi
+          exit ${STATUS:-0}
+      - name: Upload test diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-test-diagnostics
+          path: gradle-test.log
+      - name: Build installable APK
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle assembleDebug --stacktrace --console=plain 2>&1 | tee gradle-build.log || STATUS=$?
+          if [ -n "${STATUS:-}" ]; then
+            MESSAGE=$(grep -E -A3 -B2 'error:|FAILURE:|What went wrong|Execution failed|Caused by:' gradle-build.log | tail -80 | sed ':a;N;$!ba;s/%/%25/g;s/\r/%0D/g;s/\n/%0A/g')
+            echo "::error title=APK build diagnostics::$MESSAGE"
+          fi
+          exit ${STATUS:-0}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CraftWorld-3D-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
