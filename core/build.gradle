@@ -1,0 +1,20 @@
+// CraftWorld 3D - pure Java engine core (no Android dependencies).
+// Everything in this module is unit-testable on the JVM.
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

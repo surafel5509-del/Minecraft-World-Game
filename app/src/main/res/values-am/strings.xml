@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ክራፍትወርልድ 3D</string>
+
+    <string name="menu_play">ጫወታ</string>
+    <string name="menu_create_world">ዓለም ፍጠር</string>
+    <string name="menu_load_world">ዓለም ጫን</string>
+    <string name="menu_settings">ቅንብሮች</string>
+    <string name="menu_achievements">ሽልማቶች</string>
+    <string name="menu_statistics">ስታቲስቲክስ</string>
+    <string name="menu_about">ስለ</string>
+    <string name="menu_exit">ውጣ</string>
+
+    <string name="world_name">የዓለም ስም</string>
+    <string name="world_seed">ዘር (ባዶ = የዘፈቀደ)</string>
+    <string name="world_gamemode">የጨዋታ ሁነታ</string>
+    <string name="gamemode_survival">መትረፍ</string>
+    <string name="gamemode_creative">ፈጠራ</string>
+    <string name="world_difficulty">አስቸጋሪነት</string>
+    <string name="difficulty_peaceful">ሰላማዊ</string>
+    <string name="difficulty_easy">ቀላል</string>
+    <string name="difficulty_normal">መደበኛ</string>
+    <string name="difficulty_hard">ከባድ</string>
+    <string name="world_type">የዓለም አይነት</string>
+    <string name="world_type_default">ነባሪ</string>
+    <string name="world_type_flat">ጠፍጣፋ</string>
+    <string name="create">ፍጠር</string>
+    <string name="no_worlds">እስካሁን ዓለም የለም። አንድ ይፍጠሩ!</string>
+    <string name="world_info">ዘር %1$s · %2$s · የተጫወቱት %3$s</string>
+    <string name="delete_world">ሰርዝ</string>
+    <string name="delete_world_confirm">ይህን ዓለም ለዘላለም ይሰርዙ?</string>
+
+    <string name="settings_graphics">የግራፊክስ ጥራት</string>
+    <string name="graphics_low">ዝቅተኛ</string>
+    <string name="graphics_medium">መካከለኛ</string>
+    <string name="graphics_high">ከፍተኛ</string>
+    <string name="settings_render_distance">የእይታ ርቀት (ቸንኮች)</string>
+    <string name="settings_show_fps">FPS አሳይ</string>
+    <string name="settings_particles">ቅንጣቶች</string>
+    <string name="settings_sensitivity">የመንካት ትብነት</string>
+    <string name="settings_sound_volume">የድምጽ መጠን</string>
+    <string name="settings_music_volume">የሙዚቃ መጠን</string>
+    <string name="settings_difficulty">አስቸጋሪነት</string>
+    <string name="settings_camera">የካሜራ ሁነታ</string>
+    <string name="camera_first">የመጀመሪያ ሰው</string>
+    <string name="camera_third">የሶስተኛ ሰው</string>
+    <string name="settings_vibration">ንዝረት</string>
+
+    <string name="pause_resume">ቀጥል</string>
+    <string name="pause_save_quit">አስቀምጥ እና ውጣ</string>
+    <string name="paused">ቆሟል</string>
+    <string name="you_died">ሞተዋል!</string>
+    <string name="respawn">እንደገና ተወለድ</string>
+    <string name="inventory">እቃዎች</string>
+    <string name="crafting">መስራት</string>
+    <string name="furnace">ምድጃ</string>
+    <string name="chest">ሳጥን</string>
+    <string name="trading">ንግድ</string>
+    <string name="saved">ዓለም ተቀምጧል</string>
+    <string name="fuel">ነዳጅ</string>
+    <string name="health">ጤና</string>
+    <string name="dismount">ውረድ</string>
+    <string name="refueled">ተሽከርካሪ ነዳጅ ተሞላ</string>
+
+    <string name="achievement_unlocked">ሽልማት ተከፍቷል፦ %1$s</string>
+    <string name="achievement_first_block">የመጀመሪያ ብሎክ</string>
+    <string name="achievement_first_block_desc">የመጀመሪያ ብሎክዎን ይቆፍሩ</string>
+    <string name="achievement_first_craft">የመጀመሪያ ስራ</string>
+    <string name="achievement_first_craft_desc">ማንኛውንም እቃ ይስሩ</string>
+    <string name="achievement_first_tool">የመጀመሪያ መሳሪያ</string>
+    <string name="achievement_first_tool_desc">መሳሪያ ይስሩ</string>
+    <string name="achievement_first_house">ቤት ሰሪ</string>
+    <string name="achievement_first_house_desc">በቤትዎ ላይ በር ይትከሉ</string>
+    <string name="achievement_first_diamond">አልማዞች!</string>
+    <string name="achievement_first_diamond_desc">የአልማዝ ማዕድን ይቆፍሩ</string>
+    <string name="achievement_first_vehicle">ሹፌር</string>
+    <string name="achievement_first_vehicle_desc">ተሽከርካሪ ይስሩ</string>
+    <string name="achievement_first_flight">አብራሪ</string>
+    <string name="achievement_first_flight_desc">ተነስተው ይብረሩ</string>
+    <string name="achievement_first_dimension">ወደ ጥልቁ</string>
+    <string name="achievement_first_dimension_desc">ወደ ሁለተኛው ልኬት ይግቡ</string>
+    <string name="locked">ተቆልፏል</string>
+
+    <string name="stat_blocks_mined">የተቆፈሩ ብሎኮች</string>
+    <string name="stat_blocks_placed">የተቀመጡ ብሎኮች</string>
+    <string name="stat_distance">የተጓዘ ርቀት (ሜ)</string>
+    <string name="stat_mobs">የተሸነፉ ፍጥረታት</string>
+    <string name="stat_crafted">የተሰሩ እቃዎች</string>
+    <string name="stat_time">የጨዋታ ጊዜ</string>
+    <string name="stat_deaths">ሞቶች</string>
+    <string name="stats_pick_world">ስታቲስቲክስ በየዓለሙ ነው። የቅርብ ጊዜ ዓለም፦</string>
+
+    <string name="about_text">ክራፍትወርልድ 3D ሙሉ በሙሉ ከመስመር ውጭ የሚሰራ
+        የቮክሰል ሳንድቦክስ ጨዋታ ነው። በሂደት የሚፈጠሩ ዓለማትን ያስሱ፣ ማዕድናትን ይቆፍሩ፣
+        መሳሪያዎችን ይስሩ፣ ተሽከርካሪዎችን ይገንቡ፣ አውሮፕላኖችን ያብርሩ እና ሁለተኛ ልኬት ያግኙ።
+        \n\nሁሉም ውሂብ በመሳሪያዎ ላይ ይቀመጣል፦ ኢንተርኔት የለም፣ መለያዎች የሉም፣ ማስታወቂያዎች የሉም።
+        \n\nስሪት %1$s</string>
+</resources>

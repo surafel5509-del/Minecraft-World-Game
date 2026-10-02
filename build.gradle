@@ -1,0 +1,4 @@
+// CraftWorld 3D - root build file
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+}
