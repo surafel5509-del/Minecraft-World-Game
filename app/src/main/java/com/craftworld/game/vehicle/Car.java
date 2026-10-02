@@ -1,0 +1,2 @@
+package com.craftworld.game.vehicle;
+public final class Car extends Vehicle {public enum Type{SEDAN,SUV,TRUCK,SPORTS_CAR,JEEP} public final Type type; public float heading; public Car(Type t){type=t;} public void update(float gas,float steering,float dt){if(fuel<=0||health<=0)return;speed+=(gas*12-speed*.8f)*dt;speed=Math.max(-6,Math.min(type==Type.SPORTS_CAR?30:20,speed));heading+=steering*speed*.035f*dt;x+=Math.sin(heading)*speed*dt;z-=Math.cos(heading)*speed*dt;fuel=Math.max(0,fuel-Math.abs(gas)*dt*.08f);} public void refuelWithCoal(){fuel=Math.min(100,fuel+12);}}
