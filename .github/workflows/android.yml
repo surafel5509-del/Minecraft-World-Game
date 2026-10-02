@@ -33,7 +33,15 @@ jobs:
           name: gradle-test-diagnostics
           path: gradle-test.log
       - name: Build installable APK
-        run: gradle assembleDebug --stacktrace
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle assembleDebug --stacktrace --console=plain 2>&1 | tee gradle-build.log || STATUS=$?
+          if [ -n "${STATUS:-}" ]; then
+            MESSAGE=$(grep -E -A3 -B2 'error:|FAILURE:|What went wrong|Execution failed|Caused by:' gradle-build.log | tail -80 | sed ':a;N;$!ba;s/%/%25/g;s/\r/%0D/g;s/\n/%0A/g')
+            echo "::error title=APK build diagnostics::$MESSAGE"
+          fi
+          exit ${STATUS:-0}
       - uses: actions/upload-artifact@v4
         with:
           name: CraftWorld-3D-debug-apk
