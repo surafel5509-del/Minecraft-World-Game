@@ -5,7 +5,10 @@ A clean, Java-only Android 8+ voxel sandbox foundation. It runs without external
 ## Build and run
 1. Open this folder in Android Studio Hedgehog or newer (JDK 17).
 2. Sync Gradle, select an Android 8.0+ emulator/device, and run `app`.
-3. Or run `./gradlew assembleDebug`; install `app/build/outputs/apk/debug/app-debug.apk`.
+3. Or run `gradle assembleDebug` with Gradle 8.7; install `app/build/outputs/apk/debug/app-debug.apk`.
+
+## Download the APK
+Every push to this repository's Arena build branch runs the **Build Android APK** GitHub Actions workflow. Open the completed workflow run, download the `CraftWorld3D-debug-apk` artifact, extract it, and install `CraftWorld3D-debug.apk`. The artifact also includes a SHA-256 checksum and is retained for 30 days. The workflow can also be started manually with **Run workflow**.
 
 **Controls:** drag the left pad to walk, drag the right side to look, tap JUMP, and tap the crosshair to break/place. The hotbar selects the active block. Gamepad left stick/right stick/A are supported by the same input surface.
 
