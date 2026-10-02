@@ -52,7 +52,7 @@ public final class GameActivity extends Activity
         AtlasData atlas = new AtlasData(this);
         engine = new GameEngine(dir, atlas, sounds);
         engine.setCallbacks(this);
-        engine.setRenderDistance(settings.renderDistance());
+        engine.setRenderDistance(settings.effectiveRenderDistance());
         engine.load();
 
         glView = new GLSurfaceView(this);

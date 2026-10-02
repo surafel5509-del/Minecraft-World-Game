@@ -296,8 +296,14 @@ public final class GameEngine {
             next += TICK_NANOS;
             if (next < now - 10 * TICK_NANOS) next = now; // catch-up cap
             try {
-                if (!paused) tick();
-                else lastTickNanos = System.nanoTime();
+                if (!paused) {
+                    tick();
+                } else {
+                    // still serve queued UI actions (e.g. manual save) while paused
+                    Runnable act;
+                    while ((act = actions.poll()) != null) act.run();
+                    lastTickNanos = System.nanoTime();
+                }
             } catch (Exception e) {
                 // keep the game alive; a single bad tick must not crash the app
             }
@@ -342,6 +348,12 @@ public final class GameEngine {
         float healthBefore = player.health;
         if (mounted == null) {
             player.tick(world);
+            // parachute: holding it open (selected) turns a fall into a glide
+            if (!player.onGround && !player.inWater && player.vy < -4
+                    && player.inventory.selected().itemId == ItemIds.PARACHUTE) {
+                player.vy = -3;
+                player.fallDistance = 0;
+            }
         }
 
         world.tick(player.x, player.y, player.z, AI_ACTIVATION_RANGE);
@@ -921,6 +933,11 @@ public final class GameEngine {
             pendingChunks.remove(streamKey(w.dimension, chunk.chunkX, chunk.chunkZ));
             if (w != activeWorld) continue;
             w.putChunk(chunk);
+            // re-mesh neighbours so faces against the new chunk are culled
+            for (int[] d : new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}) {
+                Chunk n = w.getLoadedChunk(chunk.chunkX + d[0], chunk.chunkZ + d[1]);
+                if (n != null) n.dirty = true;
+            }
             if (fresh && w == overworld && w.generator instanceof OverworldGenerator og) {
                 for (double[] pos : og.villagerSpawns(chunk.chunkX, chunk.chunkZ)) {
                     Villager v = new Villager();

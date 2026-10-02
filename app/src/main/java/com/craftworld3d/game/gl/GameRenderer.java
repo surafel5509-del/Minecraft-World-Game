@@ -173,7 +173,7 @@ public final class GameRenderer implements GLSurfaceView.Renderer {
             cam[2] -= dirZ * 3.5;
         }
 
-        int renderDist = settings.renderDistance();
+        int renderDist = settings.effectiveRenderDistance();
         float fogEnd = renderDist * 16f - 8f;
         float fogStart = fogEnd * 0.55f;
         float far = fogEnd + 48f;

@@ -18,6 +18,15 @@ public final class Settings {
     public void setGraphicsQuality(int v) { prefs.edit().putInt("graphics", v).apply(); }
 
     public int renderDistance() { return prefs.getInt("renderDistance", 5); }
+
+    /** Render distance after applying the graphics-quality cap (low=4, medium=8). */
+    public int effectiveRenderDistance() {
+        int rd = renderDistance();
+        int q = graphicsQuality();
+        if (q == GRAPHICS_LOW) return Math.min(rd, 4);
+        if (q == GRAPHICS_MEDIUM) return Math.min(rd, 8);
+        return rd;
+    }
     public void setRenderDistance(int v) { prefs.edit().putInt("renderDistance", clamp(v, 2, 12)).apply(); }
 
     public boolean showFps() { return prefs.getBoolean("showFps", false); }
