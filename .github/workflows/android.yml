@@ -22,6 +22,12 @@ jobs:
           tail -120 gradle-test.log >> "$GITHUB_STEP_SUMMARY"
           printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
           exit ${STATUS:-0}
+      - name: Upload test diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-test-diagnostics
+          path: gradle-test.log
       - name: Build installable APK
         run: gradle assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
