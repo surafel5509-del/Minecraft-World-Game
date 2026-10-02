@@ -14,7 +14,14 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with: { gradle-version: '8.9' }
       - name: Unit tests
-        run: gradle testDebugUnitTest --stacktrace
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle testDebugUnitTest --stacktrace --console=plain 2>&1 | tee gradle-test.log || STATUS=$?
+          printf '```text\n' >> "$GITHUB_STEP_SUMMARY"
+          tail -120 gradle-test.log >> "$GITHUB_STEP_SUMMARY"
+          printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
+          exit ${STATUS:-0}
       - name: Build installable APK
         run: gradle assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
